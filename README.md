@@ -1,5 +1,13 @@
 # Azure chat bot with the Language Service and Azure Bot Service
 
+# >Language service: 
+The Language service includes a custom question answering feature that enables you to create a knowledge base of question and answer pairs that can be queried using natural language input
+# >Azure Bot service:
+This service provides a framework for developing, publishing, and managing bots on Azure.
+
+# Creating a custom question answering knowledge base
+The first challenge in creating a user support bot is to use the Language service to create a knowledge base. You can use the Language Studio's custom question answering feature to create, train, publish, and manage knowledge bases.
+
 
 Bot Framework v4 Custom question answering bot sample. This sample demonstrates usage of advanced features of Custom question answering like [Precise answering][PA], support for unstructured sources along with [Multi-turn conversations][MT] and [Active Learning][AL] in a bot.
 
@@ -7,13 +15,36 @@ This bot has been created using [Bot Framework][BF], it shows how to create a bo
 
 ## Concepts introduced in this sample
 The [Custom question answering feature in Language Service][LS] enables you to build, train and publish a simple question and answer bot based on FAQ URLs, structured and unstructured documents or editorial content in minutes. In this sample, we demonstrate:
-- How to use the Active Learning to generate suggestions for knowledge base.
-- How to use follow up prompts to create multiple turns of a conversation.
-- How to configure display of precise answers.
-- How to enable/disable querying unstructured sources with the bot.
+
 
 ## Prerequisites
 - This project requires a [Language resource](https://aka.ms/create-language-resource) with Custom question answering enabled and Microsoft Azure Account
+
+To create a knowledge base, you must first provision a Language service resource in your Azure subscription.
+## create a language service in Azure
+![create-language-service-resource](https://user-images.githubusercontent.com/114275507/195900608-6e963698-325a-44da-8e5e-0a213c72ef4d.png)
+
+## Language Studio. 
+login into the language studio .If it's your first time logging in, you'll see a window appear that lets you choose a language resource.
+![image](https://user-images.githubusercontent.com/112709511/195116278-0d61108b-9491-4c32-8980-eb6e731aaf60.png)
+
+Select Create a new language resource. Then enter information for your new resource, such as a name, location and resource group.
+
+## Test the knowledge base
+After creating a set of question-and-answer pairs, you must save it. This process analyzes your literal questions and answers and applies a built-in natural language processing model to match appropriate answers to questions, even when they are not phrased exactly as specified in your question definitions. Then you can use the built-in test interface in the Language Studio to test your knowledge base by submitting questions and reviewing the answers that are returned.
+![test knowledge base](https://user-images.githubusercontent.com/114275507/195903404-aef81951-e6c3-48a5-9537-2472903be930.png)
+## Use the knowledge base
+When you're satisfied with your knowledge base, deploy it. Then you can use it over its REST interface. To access the knowledge base, client applications require:
+
+The knowledge base ID
+The knowledge base endpoint
+The knowledge base authorization key
+![test knowledge base](https://user-images.githubusercontent.com/114275507/195903671-c6919d34-ec1b-4f5d-9ad8-2448cd935296.png)
+## Build a bot with the Azure Bot Service
+After you've created and deployed a knowledge base, you can deliver it to users through a bot.
+
+
+
 
 ### Configure knowledge base of the project
 - Follow instructions [here][Quickstart] to create a Custom question answering project. You will need this project's name to be used as `ProjectName` in [appsettings.json](appsettings.json).
@@ -29,6 +60,11 @@ Follow these steps to update [appsettings.json](appsettings.json).
 - Go to `Keys and Endpoint` under Resource Management.
 - Copy one of the keys as value of `LanguageEndpointKey` and Endpoint as value of `LanguageEndpointHostName` in [appsettings.json](appsettings.json).
 - `ProjectName` is the name of the project created in [Language Studio][LS].
+
+## Create a bot for your knowledge base
+You can create a custom bot by using the Microsoft Bot Framework SDK to write code that controls conversation flow and integrates with your knowledge base. However, an easier approach is to use the automatic bot creation functionality, which enables you create a bot for your deployed knowledge base and publish it as an Azure Bot Service application with just a few clicks.
+
+![web app bot](https://user-images.githubusercontent.com/114275507/195903944-6f19ed6f-92c9-4030-83a2-114e89cb9307.png)
 
 ## To try this sample
 
@@ -106,7 +142,10 @@ Follow these steps to update [appsettings.json](appsettings.json).
     filters.SourceFilter.Add("SampleActiveLearningImport.tsv");
     
     // Initialize Filters with filters in line No. 81
-    ```    
+    
+ ## Connect channels
+When your bot is ready to be delivered to users, you can connect it to multiple channels; making it possible for users to interact with it through web chat, email, Microsoft Teams, and other common communication media.
+     
 
 ## Microsoft Teams channel group chat fix
 When a bot (named as `HelpBot`) is added to a Teams channel or Teams group chat, you will have to refer it as `@HelpBot` `How to build a bot?` to get answers from the service.
@@ -133,35 +172,8 @@ However, bot tries to send `<at>HelpBot</at>` `How to build a bot?` as query to 
             await ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
             await UserState.SaveChangesAsync(turnContext, false, cancellationToken);
         }
-    ```
 
-## Deploy the bot to Azure
-See [Deploy your C# bot to Azure][50] for instructions.
 
-The deployment process assumes you have an account on Microsoft Azure and are able to log into the [Microsoft Azure Portal][Azure].
+   
 
-If you are new to Microsoft Azure, please refer to [Getting started with Azure][70] for guidance on how to get started on Azure.
 
-## Further reading
-- [How bots work][90]
-- [Question Answering Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/overview)
-- [Channels and Bot Connector Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-concepts?view=azure-bot-service-4.0)
-- [Active learning Documentation][AL]
-- [Multi-turn Conversations][MT]
-- [Precise Answering][PA]
-
-[50]: https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0
-[70]: https://azure.microsoft.com/get-started/
-[90]: https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics?view=azure-bot-service-4.0
-[100]: https://docs.microsoft.com/en-us/azure/bot-service/bot-service-overview-introduction?view=azure-bot-service-4.0
-[110]: https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0
-[140]: https://portal.azure.com
-
-[LS]: https://language.cognitive.azure.com/
-[MT]: https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/tutorials/guided-conversations
-[AL]: https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/tutorials/active-learning
-[PA]: https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/concepts/precise-answering
-[BF]: https://dev.botframework.com/
-[Quickstart]: https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/quickstart/sdk
-[Azure]: https://portal.azure.com/
-[BFE]: https://github.com/Microsoft/BotFramework-Emulator/releases
