@@ -15,7 +15,8 @@ The [Custom question answering feature in Language Service][LS] enables you to b
 
 To create a knowledge base, you must first provision a Language service resource in your Azure subscription.
 ## create a language service in Azure
-![create-language-service-resource](https://user-images.githubusercontent.com/114275507/195900608-6e963698-325a-44da-8e5e-0a213c72ef4d.png)
+![create-language-service-resource](https://user-images.githubusercontent.com/114275507/195900608-6e963698-325a-44da-8e5e-0a213c72ef4d.png) 
+ Click Review and Create and then click Create. Wait for the deployment of the Language service that will support your custom question answering knowledge base.
 
 ## Language Studio. 
 login into the language studio .If it's your first time logging in, you'll see a window appear that lets you choose a language resource.
@@ -63,8 +64,16 @@ Follow these steps to update [appsettings.json](appsettings.json).
 - `ProjectName` is the name of the project created in [Language Studio][LS].
 
 ## Create a bot for your knowledge base
-You can create a custom bot by using the Microsoft Bot Framework SDK to write code that controls conversation flow and integrates with your knowledge base. However, an easier approach is to use the automatic bot creation functionality, which enables you create a bot for your deployed knowledge base and publish it as an Azure Bot Service application with just a few clicks.
+Create a bot for the knowledge base
+The knowledge base provides a back-end service that client applications can use to answer questions through some sort of user interface. Commonly, these client applications are bots. To make the knowledge base available to a bot, you must publish it as a service that can be accessed over HTTP. You can then use the Azure Bot Service to create and host a bot that uses the knowledge base to answer user questions.
 
+At the left of the Language Studio page, click Deploy knowledge base.
+
+At the top of the page, click Deploy, and the click Deploy again.
+
+After the service has been deployed, click Create a bot. This opens the Azure portal in a new browser tab so you can create a Web App Bot in your Azure subscription.
+
+In the Azure portal, create a Web App Bot with the following settings
 ![web app bot](https://user-images.githubusercontent.com/114275507/195903944-6f19ed6f-92c9-4030-83a2-114e89cb9307.png)
 
 ## To try this sample
