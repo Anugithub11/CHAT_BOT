@@ -1,8 +1,8 @@
 # Azure chat bot with the Language Service and Azure Bot Service
 
-# >Language service: 
+# **Language service: 
 The Language service includes a custom question answering feature that enables you to create a knowledge base of question and answer pairs that can be queried using natural language input
-# >Azure Bot service:
+# **Azure Bot service:
 This service provides a framework for developing, publishing, and managing bots on Azure.
 
 
