@@ -1,4 +1,5 @@
-# Custom Question Answering
+# Azure chat bot with the Language Service and Azure Bot Service
+
 
 Bot Framework v4 Custom question answering bot sample. This sample demonstrates usage of advanced features of Custom question answering like [Precise answering][PA], support for unstructured sources along with [Multi-turn conversations][MT] and [Active Learning][AL] in a bot.
 
@@ -12,7 +13,7 @@ The [Custom question answering feature in Language Service][LS] enables you to b
 - How to enable/disable querying unstructured sources with the bot.
 
 ## Prerequisites
-- This project requires a [Language resource](https://aka.ms/create-language-resource) with Custom question answering enabled.
+- This project requires a [Language resource](https://aka.ms/create-language-resource) with Custom question answering enabled and Microsoft Azure Account
 
 ### Configure knowledge base of the project
 - Follow instructions [here][Quickstart] to create a Custom question answering project. You will need this project's name to be used as `ProjectName` in [appsettings.json](appsettings.json).
