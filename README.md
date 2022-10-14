@@ -5,13 +5,6 @@ The Language service includes a custom question answering feature that enables y
 # >Azure Bot service:
 This service provides a framework for developing, publishing, and managing bots on Azure.
 
-# Creating a custom question answering knowledge base
-The first challenge in creating a user support bot is to use the Language service to create a knowledge base. You can use the Language Studio's custom question answering feature to create, train, publish, and manage knowledge bases.
-
-
-Bot Framework v4 Custom question answering bot sample. This sample demonstrates usage of advanced features of Custom question answering like [Precise answering][PA], support for unstructured sources along with [Multi-turn conversations][MT] and [Active Learning][AL] in a bot.
-
-This bot has been created using [Bot Framework][BF], it shows how to create a bot that uses the [Custom question answering feature in Language Service][LS].
 
 ## Concepts introduced in this sample
 The [Custom question answering feature in Language Service][LS] enables you to build, train and publish a simple question and answer bot based on FAQ URLs, structured and unstructured documents or editorial content in minutes. In this sample, we demonstrate:
@@ -29,21 +22,29 @@ login into the language studio .If it's your first time logging in, you'll see a
 ![image](https://user-images.githubusercontent.com/112709511/195116278-0d61108b-9491-4c32-8980-eb6e731aaf60.png)
 
 Select Create a new language resource. Then enter information for your new resource, such as a name, location and resource group.
+# Creating a custom question answering knowledge base
+The first challenge in creating a user support bot is to use the Language service to create a knowledge base. You can use the Language Studio's custom question answering feature to create, train, publish, and manage knowledge bases.
+
+
+Bot Framework v4 Custom question answering bot sample. This sample demonstrates usage of advanced features of Custom question answering like [Precise answering][PA], support for unstructured sources along with [Multi-turn conversations][MT] and [Active Learning][AL] in a bot.
+
+This bot has been created using [Bot Framework][BF], it shows how to create a bot that uses the [Custom question answering feature in Language Service][LS].
+
 
 ## Test the knowledge base
 After creating a set of question-and-answer pairs, you must save it. This process analyzes your literal questions and answers and applies a built-in natural language processing model to match appropriate answers to questions, even when they are not phrased exactly as specified in your question definitions. Then you can use the built-in test interface in the Language Studio to test your knowledge base by submitting questions and reviewing the answers that are returned.
 ![test knowledge base](https://user-images.githubusercontent.com/114275507/195903404-aef81951-e6c3-48a5-9537-2472903be930.png)
+
 ## Use the knowledge base
 When you're satisfied with your knowledge base, deploy it. Then you can use it over its REST interface. To access the knowledge base, client applications require:
 
 The knowledge base ID
 The knowledge base endpoint
 The knowledge base authorization key
-![test knowledge base](https://user-images.githubusercontent.com/114275507/195903671-c6919d34-ec1b-4f5d-9ad8-2448cd935296.png)
+![Create a bot](https://user-images.githubusercontent.com/114275507/195905120-7de1e84c-07ef-4720-af7c-9feee48c9137.png)
+
 ## Build a bot with the Azure Bot Service
 After you've created and deployed a knowledge base, you can deliver it to users through a bot.
-
-
 
 
 ### Configure knowledge base of the project
@@ -145,8 +146,9 @@ You can create a custom bot by using the Microsoft Bot Framework SDK to write co
     
  ## Connect channels
 When your bot is ready to be delivered to users, you can connect it to multiple channels; making it possible for users to interact with it through web chat, email, Microsoft Teams, and other common communication media.
-     
+![channels](https://user-images.githubusercontent.com/114275507/195905448-3d61621a-122a-40ca-b384-28c8272c32b1.png)
 
+     
 ## Microsoft Teams channel group chat fix
 When a bot (named as `HelpBot`) is added to a Teams channel or Teams group chat, you will have to refer it as `@HelpBot` `How to build a bot?` to get answers from the service.
 However, bot tries to send `<at>HelpBot</at>` `How to build a bot?` as query to Custom question answering service which may not give expected results for question to bot. The following code removes `<at>HelpBot</at>` mentions of the bot from the message and sends the remaining text as query to the service.
@@ -172,6 +174,18 @@ However, bot tries to send `<at>HelpBot</at>` `How to build a bot?` as query to 
             await ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
             await UserState.SaveChangesAsync(turnContext, false, cancellationToken);
         }
+ ## Test the chat bot in microsoft teams
+
+![Screenshot 2022-10-14 225521](https://user-images.githubusercontent.com/114275507/195905913-7e7df694-aa17-4d04-945f-7f37398a2c6e.png)
+
+## Further reading
+- [How bots work][90]
+- [Question Answering Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/overview)
+- [Channels and Bot Connector Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-concepts?view=azure-bot-service-4.0)
+- [Active learning Documentation][AL]
+- [Multi-turn Conversations][MT]
+- [Precise Answering][PA]
+
 
 
    
